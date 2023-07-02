@@ -1,2 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>抽奖页面</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
 
-袁训涛的个人网站44444
+        h1 {
+            margin-top: 50px;
+        }
+
+        .prize {
+            padding: 20px;
+            margin: 20px;
+            border: 2px solid #ccc;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .selected {
+            background-color: red;
+        }
+
+        #result {
+            margin-top: 50px;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        #drawButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ccc;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h1>抽中喝酒</h1>
+
+<div class="prize">王月华</div>
+<div class="prize">宋勇</div>
+<div class="prize">袁训涛</div>
+<div class="prize">袁刚</div>
+<div class="prize">董学森</div>
+<div class="prize">魏亚辉</div>
+
+<div id="result"></div>
+
+<button id="drawButton">点击抽奖</button>
+
+<script>
+    var prizes = document.querySelectorAll('.prize');
+    var resultDiv = document.getElementById('result');
+    var drawButton = document.getElementById('drawButton');
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function selectPrize() {
+        for (var i = 0; i < prizes.length; i++) {
+            prizes[i].classList.remove('selected');
+        }
+
+        var index = getRandomInt(0, prizes.length - 1);
+        var selectedPrize = prizes[index];
+        selectedPrize.classList.add('selected');
+        resultDiv.textContent = '中奖奖项：' + selectedPrize.textContent;
+    }
+
+    drawButton.addEventListener('click', selectPrize);
+</script>
+</body>
+</html>
